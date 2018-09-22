@@ -16,8 +16,9 @@ ActiveRecord::Schema.define(version: 2018_09_21_020948) do
   enable_extension "plpgsql"
 
   create_table "songs", force: :cascade do |t|
-    t.string "name"
-    t.boolean "complete"
+    t.string "title"
+    t.string "artist"
+    t.string "rank"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

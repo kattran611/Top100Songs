@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Top100Form extends React.Component {
+class SongForm extends React.Component {
   state = {name: ""}
 
   handleChange = (e) => {
@@ -17,7 +17,7 @@ class Top100Form extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <input
-          placdholder="Add A Top100"
+          placdholder="Add A Song"
           required
           value={this.state.name}
           onChange={this.handleChange}
@@ -27,4 +27,4 @@ class Top100Form extends React.Component {
   }
 }
 
-export default Top100Form
+export default SongForm;

@@ -16,7 +16,7 @@ class Api::SongsController < ApplicationController
 
   def update
     song = Song.find(params[:id])
-    song.update(complete: !item.complete)
+    song.update(song_params)
     render json: song
   end
 
@@ -28,7 +28,7 @@ class Api::SongsController < ApplicationController
   private
 
   def song_params
-    params.require(:song).permit(:name, :complete)
+    params.require(:song).permit(:title, :artist, :rank)
   end
 
 end
