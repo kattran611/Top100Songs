@@ -4,6 +4,7 @@ import { Item } from 'semantic-ui-react'
 const Song = ({ artist, title, rank, updateSong, deleteSong }) => (
 <div>
 
+
 <Item>
 
   <Item.Content verticalAlign='middle'>

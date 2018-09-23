@@ -9,9 +9,14 @@ import SongList from './components/SongList';
 class App extends Component {
 
  state = { songs: [
-   {id: 1, title: "Despacito", artist: "Justin Beiber", rank: 3},
+   {id: 1, title: "Hello", artist: "Adele", rank: 1},
    {id: 2, title: "End Game", artist: "Taylor Swift", rank: 2},
-   {id: 3, title: "Hunger", artist: "Florence and the Machine", rank: 1},
+   {id: 3, title: "Hunger", artist: "Florence and the Machine", rank: 3 },
+   {id: 4, title: "Chandelier", artist: "Sia", rank: 4},
+   {id: 5, title: "Zombie", artist: "The Cranberries", rank: 5},
+   {id: 6, title: "Hands", artist: "Jewel", rank: 6},
+   {id: 7, title: "Hearbreaker", artist: "Mariah Carey", rank: 7},
+   {id: 8, title: "A Team", artist: "Ed Sheeran", rank: 8}
  ]}
 
  componentDidMount() {
@@ -20,22 +25,47 @@ class App extends Component {
  }
 
 
- addSong = (name) => {
-   //TODO make api call to rails server to add item
-   const { songs } = this.state;
-   //Generate random id
-   const id = Math.floor(( 1 + Math.random()) * 0x1000).toString()
-   this.setState({ songs: [...songs, { id, name }] });
+ addSong = (title, artist, rank) => {
+   //TODO make api call to rails server to add itemle
+   let song = {title, artist, rank};
+   fetch(`/api/songs`, {
+     method: 'POST',
+     headers: {
+       'Content-Type': 'application/json',
+       'Accept': 'application/json'
+     },
+     body: JSON.stringify(song)
+   }).then(res => res.json())
+     .then(song => {
+       const {songs} = this.state;
+       this.setState({songs: [...songs, song]})
+   })
  }
 
- deleteSong = (name) => {
+ deleteSong = (title) => {
    //TODO make api call to delete todo
    //TODO remove it from state
+   fetch(`/api/songs/${title}`, {method: 'DELETE'})
+    .then( () => {
+      const{songs} = this.state;
+      this.setState({songs: songs.filter(t => t.title !== title)})
+    })
+
  }
 
- updateSong = (song) => {
+ updateSong = (title) => {
    //TODO make api call to update todo
    //TODO update state
+   fetch(`/api/songs/${title}`, {method: 'PUT'})
+    .then(res => res.json())
+    .then(item => {
+      let songs = this.state.songs.map(t => {
+        if (t.title === title)
+          return title
+        return t;
+      });
+      this.setState({songs});
+    })
  }
 
  render() {
@@ -49,7 +79,7 @@ class App extends Component {
            />
          </Grid.Column>
          <Grid.Column>
-           <Button color='blue' size='mini' fluid >Click Click</Button>
+           <Button color='blue' size='mini' fluid >Add Artist</Button>
          </Grid.Column>
        </Grid.Row>
 
