@@ -1,10 +1,10 @@
 import React from 'react'
-import { Item } from 'semantic-ui-react'
+import { Item, Container } from 'semantic-ui-react'
 
 const Song = ({ artist, title, rank, updateSong, deleteSong }) => (
 <div>
 
-
+<Container>
 <Item>
 
   <Item.Content verticalAlign='middle'>
@@ -16,6 +16,7 @@ const Song = ({ artist, title, rank, updateSong, deleteSong }) => (
 
 
 </Item>
+</Container>
 
 </div>
 )
