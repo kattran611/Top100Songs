@@ -11,7 +11,7 @@ const Song = ({ artist, title, rank, updateSong, deleteSong }) => (
     <Item.Meta>{rank}</Item.Meta>
     <Item.Header as='a'>{title}</Item.Header>
     <Item.Meta>by: {artist}</Item.Meta>
-
+    <button onClick={() => {deleteSong(title)}}>x</button>
   </Item.Content>
 
 

@@ -9,20 +9,24 @@ import SongList from './components/SongList';
 class App extends Component {
 
  state = { songs: [
-   {id: 1, title: "Despacito", artist: "Justin Bieber", rank: 9},
-   {id: 2, title: "A Team", artist: "Ed Sheeran", rank: 8},
-   {id: 3, title: "Heartbreaker", artist: "Mariah Carey", rank: 7 },
-   {id: 4, title: "Hands", artist: "Jewel", rank: 6},
-   {id: 5, title: "Zombie", artist: "The Cranberries", rank: 5},
-   {id: 6, title: "Chandelier", artist: "Sia", rank: 4},
-   {id: 7, title: "Hunger", artist: "Florence and the Machine", rank: 3},
-   {id: 8, title: "End Game", artist: "Taylor Swift", rank: 2},
-   {id: 9, title: "Hello", artist: "Adele", rank: 1}
+   // {id: 1, title: "Despacito", artist: "Justin Bieber", rank: 9},
+   // {id: 2, title: "A Team", artist: "Ed Sheeran", rank: 8},
+   // {id: 3, title: "Heartbreaker", artist: "Mariah Carey", rank: 7 },
+   // {id: 4, title: "Hands", artist: "Jewel", rank: 6},
+   // {id: 5, title: "Zombie", artist: "The Cranberries", rank: 5},
+   // {id: 6, title: "Chandelier", artist: "Sia", rank: 4},
+   // {id: 7, title: "Hunger", artist: "Florence and the Machine", rank: 3},
+   // {id: 8, title: "End Game", artist: "Taylor Swift", rank: 2},
+   // {id: 9, title: "Hello", artist: "Adele", rank: 1}
  ]}
 
  componentDidMount() {
    //TODO make a call to our rails server to get Items
-
+   fetch('/api/songs')
+   .then(res=>res.json())
+   .then(songs => {
+      this.setState({ songs })
+   })
  }
 
 
