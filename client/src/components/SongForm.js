@@ -12,16 +12,20 @@ class SongForm extends React.Component {
     this.setState({artist: e.target.value});
   }
 
+  handleRankChange = (e) => {
+    this.setState({rank: e.target.value});
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
-    const { title, artist } = this.state
-    this.props.addSong({ title, artist })
-    this.props.addSong(title, artist)
-    this.setState({title: '', artist: ''})
+    const { title, artist, rank } = this.state
+    this.props.addSong({ title, artist, rank })
+    this.props.addSong(title, artist, rank)
+    this.setState({title: '', artist: '', rank: ''})
   }
 
   render () {
-    const {title, artist} = this.state;
+    const {title, artist, rank} = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
         <input
@@ -42,6 +46,18 @@ class SongForm extends React.Component {
           // value={this.state.title}
           // onChange={this.handleChange}
         />
+
+        <input
+          name='rank'
+          value={rank}
+          onChange={this.handleRankChange}
+          required
+          placeholder="Rank"
+          // value={this.state.title}
+          // onChange={this.handleChange}
+        />
+
+
         <button>Submit</button>
       </form>
     )
