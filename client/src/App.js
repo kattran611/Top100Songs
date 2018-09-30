@@ -75,12 +75,14 @@ class App extends Component {
    return (
      <div>
        <Container>
+       <Icon name="music" />
        <Grid divided='vertically'>
        <Grid.Row columns={6}>
          <Grid.Column>
            < SongForm
              addSong={this.addSong}
            />
+
          </Grid.Column>
          <Grid.Column>
 
@@ -94,6 +96,7 @@ class App extends Component {
              updateSong={this.updateSong}
              deleteSong={this.deleteSong}
            />
+
          </Grid.Column>
        </Grid.Row>
      </Grid>
